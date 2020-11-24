@@ -41,4 +41,11 @@ public class ProductionRecordController  {
     return productionRecordService.selectProductionRecord().get();
   }
 
+  @ApiOperation(value = "更新调机列表")
+  @PostMapping("updateProductionRecords")
+  public CommonResult updateProductionRecords(@RequestBody  List<ProductionRecord> productionRecords) throws Exception {
+
+    return productionRecordService.updateProductionRecords(productionRecords).get();
+  }
+
 }

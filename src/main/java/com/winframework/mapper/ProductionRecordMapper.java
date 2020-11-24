@@ -12,4 +12,6 @@ public interface ProductionRecordMapper  extends BaseMapper<ProductionRecord> {
   void addProductionRecord(ProductionRecord productionRecord);
 
   List<ProductionRecord>selectProductionRecord();
+
+  void updateProductionRecord(ProductionRecord productionRecord);
 }

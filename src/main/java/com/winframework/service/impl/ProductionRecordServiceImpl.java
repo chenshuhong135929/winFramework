@@ -97,6 +97,46 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
     return future;
   }
 
+  @Override
+  @Transactional
+  public CompletableFuture<CommonResult> updateProductionRecords(List<ProductionRecord> productionRecords) {
+    CommonResult result = new CommonResult();
+    CompletableFuture<CommonResult> future = CompletableFuture.supplyAsync(() -> {
+
+      for( ProductionRecord p : productionRecords){
+        MachineUseStatus machineUseStatus = new MachineUseStatus();
+        machineUseStatusMapper.updateEndTime(p.getMachineCode());
+        if(p.getOperating()==1){
+          machineUseStatus.setStatus(1);
+        }
+        if(p.getOperating()==2){
+          p.setIsFinish(true);
+          machineUseStatus.setStatus(2);
+        }
+        if(!p.getIsError()){
+          machineUseStatus.setStatus(1);
+        }
+
+        machineUseStatus.setMachineCode(p.getMachineCode());
+        machineUseStatus.setProName(p.getProName());
+
+        machineUseStatusMapper.addMachineUseStatus(machineUseStatus);
+        productionRecordMapper.updateProductionRecord(p);
+      }
+      result.setCode(HttpStatus.HTTP_OK);
+      result.setMessage("更新调机列表成功。");
+      return result;
+    });
+    future.exceptionally((e) -> {
+      e.printStackTrace();
+      result.setCode(HttpStatus.HTTP_INTERNAL_ERROR);
+      log.error("更新调机列表出错["+e.getMessage() +"]");
+      result.setMessage("系统出错误，请联系管理员。");
+      return result;
+    });
+    return future;
+  }
+
 
   /**
    * 获取当前时间班别

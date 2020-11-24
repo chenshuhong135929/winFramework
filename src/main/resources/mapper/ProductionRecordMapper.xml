@@ -10,11 +10,17 @@
    </insert>
 
 
-<select id="selectProductionRecord" resultMap="ProductionRecordResultMap">
+    <select id="selectProductionRecord" resultMap="ProductionRecordResultMap">
 
     select * from TEXC_ProductionRecord where IsFinish =0
 
-</select>
+  </select>
+
+    <update id="updateProductionRecord" parameterType="com.winframework.entity.ProductionRecord">
+
+        update TEXC_ProductionRecord set Operating=#{operating} where    ID=#{id}
+
+    </update>
 
 
     <resultMap id="ProductionRecordResultMap" type="com.winframework.entity.ProductionRecord">
