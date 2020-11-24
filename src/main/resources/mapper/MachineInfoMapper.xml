@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.winframework.mapper.MachineInfoMapper">
+
+
+
+
+    <select id="selectMachineInfo"  resultMap="MachineInfoResultMap">
+      SELECT
+	MachineCode,
+	MachineName,
+	IsAuto
+FROM
+	TEXC_MachineInfo
+WHERE
+	MachineCode NOT IN ( SELECT MachineCode FROM TEXC_ProductionRecord WHERE IsFinish = 0 )
+    </select>
+
+    <update id="updateStatus" >
+
+       update  TEXC_MachineInfo  SET  Status=#{status}  WHERE   MachineCode=#{machineCode}
+    </update>
+
+
+
+    <resultMap id="MachineInfoResultMap" type="com.winframework.entity.MachineInfo">
+        <id column="MachineCode" property="machineCode" jdbcType="VARCHAR"/>
+        <id column="MachineName" property="machineName" jdbcType="VARCHAR"/>
+        <id column="IsAuto" property="isAuto" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>
+
+

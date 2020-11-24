@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.winframework.mapper.ProductionRecordMapper">
+
+
+    <insert id="addProductionRecord" parameterType="com.winframework.entity.ProductionRecord">
+          insert into TEXC_ProductionRecord (MachineCode,CollectMac,ProName,Material,MouldCode,StdCavityQty,UseCavityQty,CycleTime,UseCycleTime,FlowType,Qty,MQty,ProDate,Classes,DebugPerson,ProPerson,Operating,IsAuto,IsError,IsFinish)
+         VALUES (#{machineCode},#{collectMac},#{proName},#{material},#{mouldCode},#{stdCavityQty},#{useCavityQty},#{cycleTime},#{useCycleTime},#{flowType},#{qty},#{mQty},#{proDate},#{classes},#{debugPerson},#{proPerson},#{operating},#{isAuto},#{isError},#{isFinish})
+   </insert>
+
+
+<select id="selectProductionRecord" resultMap="ProductionRecordResultMap">
+
+    select * from TEXC_ProductionRecord where IsFinish =0
+
+</select>
+
+
+    <resultMap id="ProductionRecordResultMap" type="com.winframework.entity.ProductionRecord">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <id column="MachineCode" property="machineCode"/>
+        <id column="CollectMac" property="collectMac" />
+        <id column="ProName" property="proName" jdbcType="VARCHAR"/>
+        <id column="Material" property="material" jdbcType="VARCHAR"/>
+        <id column="MouldCode" property="mouldCode" jdbcType="VARCHAR"/>
+        <id column="StdCavityQty" property="stdCavityQty" jdbcType="INTEGER"/>
+        <id column="UseCavityQty" property="useCavityQty" jdbcType="INTEGER"/>
+        <id column="CycleTime" property="cycleTime" jdbcType="INTEGER"/>
+        <id column="CycleTime" property="cycleTime" jdbcType="INTEGER"/>
+        <id column="UseCycleTime" property="useCycleTime" jdbcType="VARCHAR"/>
+        <id column="Qty" property="qty"/>
+        <id column="MQty" property="mQty"/>
+        <id column="ProDate" property="proDate" />
+        <id column="Classes" property="classes"/>
+        <id column="DebugPerson" property="debugPerson" />
+        <id column="ProPerson" property="proPerson"/>
+        <id column="Operating" property="operating" />
+        <id column="IsAuto" property="isAuto"/>
+        <id column="IsError" property="isError" />
+        <id column="IsFinish" property="isFinish"/>
+
+    </resultMap>
+</mapper>
+
+

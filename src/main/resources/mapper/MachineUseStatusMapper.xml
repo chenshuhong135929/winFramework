@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.winframework.mapper.MachineUseStatusMapper">
+
+
+
+    <update id="updateEndTime">
+        update TEXC_MachineUseStatus set EndTime=getdate() where   MachineCode=#{machineCode} and EndTime is null
+    </update>
+
+   <insert id="addMachineUseStatus" parameterType="com.winframework.entity.MachineUseStatus">
+          insert into TEXC_MachineUseStatus (Status,MachineCode,ProName,BeginTime) VALUES (#{status},#{machineCode},#{proName},getdate())
+   </insert>
+
+
+    <resultMap id="MachineUseStatusResultMap" type="com.winframework.entity.MachineUseStatus">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <id column="Status" property="status" jdbcType="INTEGER"/>
+        <id column="MachineCode" property="machineCode" jdbcType="VARCHAR"/>
+        <id column="ProName" property="proName" jdbcType="VARCHAR"/>
+        <id column="BeginTime" property="beginTime" />
+        <id column="EndTime" property="endTime"  />
+    </resultMap>
+</mapper>
+
+
