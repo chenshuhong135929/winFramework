@@ -20,7 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("productionRecord")
-@Api(value = "ProductInfoContoller生产记录接口")
+@Api(value = "ProductionRecordController生产记录接口")
 public class ProductionRecordController  {
 
   @Autowired
@@ -46,6 +46,13 @@ public class ProductionRecordController  {
   public CommonResult updateProductionRecords(@RequestBody  List<ProductionRecord> productionRecords) throws Exception {
 
     return productionRecordService.updateProductionRecords(productionRecords).get();
+  }
+
+  @ApiOperation(value = "故障报告")
+  @PostMapping("faultReport")
+  public CommonResult faultReport(@RequestBody  List<ProductionRecord> productionRecords) throws Exception {
+
+    return productionRecordService.faultReport(productionRecords).get();
   }
 
 }

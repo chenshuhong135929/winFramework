@@ -19,8 +19,8 @@ import java.util.List;
  * @Date 2020-11-24 10:27
  */
 @RestController
-@RequestMapping("machineInfo")
-@Api(value = "ProductInfoContoller品名接口")
+@RequestMapping("productInfo")
+@Api(value = "ProductInfoController")
 public class ProductInfoController {
 
   @Autowired

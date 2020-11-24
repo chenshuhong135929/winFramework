@@ -1,9 +1,9 @@
 package com.winframework.contoller;
 
 import com.winframework.common.CommonResult;
-import com.winframework.entity.ProductInfo;
+import com.winframework.entity.FaultInfo;
 import com.winframework.entity.Staff;
-import com.winframework.service.StaffService;
+import com.winframework.service.FaultInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +15,22 @@ import java.util.List;
 
 /**
  * @Auther ChenShuHong
- * @Date 2020-11-24 11:31
+ * @Date 2020-11-24 17:33
  */
 @RestController
-@RequestMapping("staff")
-@Api(value = "StaffController员工接口")
-public class StaffController {
+@RequestMapping("faultInfo")
+@Api(value = "FaultInfoController机台故障接口")
+public class FaultInfoController {
 
   @Autowired
-  StaffService staffService;
+  FaultInfoService faultInfoService;
+  @ApiOperation(value = "故障列表")
+  @PostMapping("selectFaultInfo")
+  public CommonResult<List<FaultInfo>> selectFaultInfo() throws Exception {
 
-  @ApiOperation(value = "调机，生产  人员下拉列表")
-  @PostMapping("selectStaff")
-  public CommonResult<List<Staff>> selectStaff() throws Exception {
-
-    return staffService.selectStaff().get();
+    return faultInfoService.selectFaultInfo().get();
   }
+
+
+
 }
