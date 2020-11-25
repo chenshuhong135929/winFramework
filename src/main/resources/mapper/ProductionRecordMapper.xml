@@ -22,7 +22,16 @@
 
     </update>
 
+    <update id="updateProductionRecordIsError">
 
+           update TEXC_ProductionRecord set IsError=#{isError} where    ID=#{id}
+    </update>
+
+    <select id="countProductionRecord" resultType="java.lang.Long">
+
+      select id from   TEXC_ProductionRecord  where MachineCode=#{machineCode} and IsFinish=0
+
+    </select>
     <resultMap id="ProductionRecordResultMap" type="com.winframework.entity.ProductionRecord">
         <id column="ID" property="id" jdbcType="INTEGER"/>
         <id column="MachineCode" property="machineCode"/>

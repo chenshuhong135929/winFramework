@@ -19,8 +19,8 @@
         <id column="Status" property="status" jdbcType="INTEGER"/>
         <id column="MachineCode" property="machineCode" jdbcType="VARCHAR"/>
         <id column="ProName" property="proName" jdbcType="VARCHAR"/>
-        <id column="BeginTime" property="beginTime" />
-        <id column="EndTime" property="endTime"  />
+        <id column="BeginTime" property="beginTime"  javaType="java.sql.Timestamp" />
+        <id column="EndTime" property="endTime"   javaType="java.sql.Timestamp" />
     </resultMap>
 </mapper>
 

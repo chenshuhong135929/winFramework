@@ -8,29 +8,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.List;
 
 /**
  * @Auther ChenShuHong
- * @Date 2020-11-24 14:43
+ * @Date 2020-11-25 9:02
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "机台使用状态",description = "机台使用状态信息表")
-public class MachineUseStatus {
-  @ApiModelProperty(value = "产品主键")
-  @TableId(type = IdType.AUTO)
-  private Long id;
+@ApiModel(value = "故障信息")
+public class FaultVo {
+  @ApiModelProperty(value = "生产记录Id")
+  private Long proReID;
   @ApiModelProperty(value = "机台号")
   private String machineCode;
   @ApiModelProperty(value = "品名")
   private String proName;
-  @ApiModelProperty(value = "机台状态")
-  private long status;
-  @ApiModelProperty(value = "生产日期")
-  private Timestamp beginTime;
-  @ApiModelProperty(value = "结束日期")
-  private Timestamp endTime;
+  @ApiModelProperty(value = "故障编号")
+  private List<String> faultCodes;
 }

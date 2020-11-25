@@ -48,11 +48,5 @@ public class ProductionRecordController  {
     return productionRecordService.updateProductionRecords(productionRecords).get();
   }
 
-  @ApiOperation(value = "故障报告")
-  @PostMapping("faultReport")
-  public CommonResult faultReport(@RequestBody  List<ProductionRecord> productionRecords) throws Exception {
-
-    return productionRecordService.faultReport(productionRecords).get();
-  }
 
 }

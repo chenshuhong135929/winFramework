@@ -13,24 +13,22 @@ import java.util.Date;
 
 /**
  * @Auther ChenShuHong
- * @Date 2020-11-24 14:43
+ * @Date 2020-11-25 9:22
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "机台使用状态",description = "机台使用状态信息表")
-public class MachineUseStatus {
+@ApiModel(value = "故障记录信息",description = "故障记录信息表")
+public class FaultRecord {
   @ApiModelProperty(value = "产品主键")
   @TableId(type = IdType.AUTO)
   private Long id;
-  @ApiModelProperty(value = "机台号")
+  @ApiModelProperty(value = "生产记录Id")
+  private long proReID;
+  @ApiModelProperty(value = "机台编号")
   private String machineCode;
-  @ApiModelProperty(value = "品名")
-  private String proName;
-  @ApiModelProperty(value = "机台状态")
-  private long status;
-  @ApiModelProperty(value = "生产日期")
-  private Timestamp beginTime;
-  @ApiModelProperty(value = "结束日期")
-  private Timestamp endTime;
+  @ApiModelProperty(value = "故障编号")
+  private String faultCode;
+  @ApiModelProperty(value = "记录时间")
+  private Timestamp recordTime;
 }

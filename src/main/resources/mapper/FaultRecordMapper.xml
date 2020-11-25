@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.winframework.mapper.FaultRecordMapper">
+
+
+    <insert id="addFaultRecord" parameterType="com.winframework.entity.FaultRecord">
+        insert INTO   TEXC_FaultRecord  (ProReID,MachineCode,FaultCode,RecordTime ) values (#{proReID},#{machineCode},#{faultCode},#{recordTime})
+    </insert>
+
+
+    <resultMap id="FaultRecordResultMap" type="com.winframework.entity.FaultRecord">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <id column="ProReID" property="proReID" jdbcType="INTEGER"/>
+        <id column="MachineCode" property="machineCode" jdbcType="VARCHAR"/>
+        <id column="FaultCode" property="faultCode" jdbcType="VARCHAR"/>
+        <id column="RecordTime" property="recordTime"  javaType="java.sql.Timestamp" />
+    </resultMap>
+</mapper>
+
+

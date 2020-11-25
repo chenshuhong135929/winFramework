@@ -45,24 +45,28 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
   public CompletableFuture<CommonResult> startProductionRecord(ProductionRecord productionRecord) {
     CommonResult result = new CommonResult();
     CompletableFuture<CommonResult> future = CompletableFuture.supplyAsync(() -> {
-      productionRecord.setClasses(classesSet());
-      productionRecord.setOperating(productionRecord.getIsAuto()==true? 1l:0l);
-      machineInfoMapper.updateStatus(productionRecord.getMachineCode(),productionRecord.getIsAuto()==true?"1":"4");
-      machineUseStatusMapper.updateEndTime(productionRecord.getMachineCode());
-      MachineUseStatus machineUseStatus = new MachineUseStatus();
-      machineUseStatus.setMachineCode(productionRecord.getMachineCode());
-      machineUseStatus.setProName(productionRecord.getProName());
-      if(productionRecord.getIsAuto()){
-        machineUseStatus.setStatus(1);
+      if( productionRecordMapper.countProductionRecord(productionRecord.getMachineCode())>0){
+        result.setCode(HttpStatus.HTTP_INTERNAL_ERROR);
+        result.setMessage("该机台已安排生产，是否强制结束，重新安排？。");
       }else {
-        machineUseStatus.setStatus(4);
+        productionRecord.setClasses(classesSet());
+        productionRecord.setOperating(productionRecord.getIsAuto() == true ? 1l : 0l);
+        machineInfoMapper.updateStatus(productionRecord.getMachineCode(), productionRecord.getIsAuto() == true ? "1" : "4");
+        machineUseStatusMapper.updateEndTime(productionRecord.getMachineCode());
+        MachineUseStatus machineUseStatus = new MachineUseStatus();
+        machineUseStatus.setMachineCode(productionRecord.getMachineCode());
+        machineUseStatus.setProName(productionRecord.getProName());
+        if (productionRecord.getIsAuto()) {
+          machineUseStatus.setStatus(1);
+        } else {
+          machineUseStatus.setStatus(4);
+        }
+        productionRecord.setIsFinish(false);
+        productionRecordMapper.addProductionRecord(productionRecord);
+        machineUseStatusMapper.addMachineUseStatus(machineUseStatus);
+        result.setCode(HttpStatus.HTTP_OK);
+        result.setMessage("调机成功。");
       }
-      productionRecord.setIsFinish(false);
-      productionRecordMapper.addProductionRecord(productionRecord);
-      machineUseStatusMapper.addMachineUseStatus(machineUseStatus);
-      result.setCode(HttpStatus.HTTP_OK);
-      result.setMessage("调机成功。");
-
       return result;
     });
     future.exceptionally((e) -> {
