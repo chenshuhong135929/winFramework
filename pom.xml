@@ -28,7 +28,7 @@
         <!--database-->
         <!--sqlserver驱动 -->
         <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
+            <groupId>sqlserver</groupId>
             <artifactId>sqljdbc4</artifactId>
             <version>4.0</version>
         </dependency>
@@ -60,5 +60,12 @@
             <version>${hutool.version}</version>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
