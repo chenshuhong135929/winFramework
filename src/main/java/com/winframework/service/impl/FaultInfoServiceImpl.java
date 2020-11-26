@@ -78,6 +78,7 @@ public class FaultInfoServiceImpl extends ServiceImpl<FaultInfoMapper, FaultInfo
       machineUseStatus.setMachineCode(faultVo.getMachineCode());
       machineUseStatus.setStatus(3);
       machineUseStatus.setBeginTime(new Timestamp(new Date().getTime()));
+      machineUseStatus.setProRecordID(faultVo.getProReID());
       machineUseStatusMapper.addMachineUseStatus(machineUseStatus);
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("添加故障信息成功。");

@@ -10,7 +10,7 @@
     </update>
 
    <insert id="addMachineUseStatus" parameterType="com.winframework.entity.MachineUseStatus">
-          insert into TEXC_MachineUseStatus (Status,MachineCode,ProName,BeginTime) VALUES (#{status},#{machineCode},#{proName},getdate())
+          insert into TEXC_MachineUseStatus (Status,MachineCode,ProName,BeginTime,ProRecordID) VALUES (#{status},#{machineCode},#{proName},getdate(),#{proRecordID})
    </insert>
 
 
@@ -19,6 +19,7 @@
         <id column="Status" property="status" jdbcType="INTEGER"/>
         <id column="MachineCode" property="machineCode" jdbcType="VARCHAR"/>
         <id column="ProName" property="proName" jdbcType="VARCHAR"/>
+        <id column="ProRecordID" property="proRecordID" jdbcType="INTEGER"/>
         <id column="BeginTime" property="beginTime"  javaType="java.sql.Timestamp" />
         <id column="EndTime" property="endTime"   javaType="java.sql.Timestamp" />
     </resultMap>

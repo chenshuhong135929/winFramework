@@ -27,6 +27,8 @@ public class MachineUseStatus {
   private String machineCode;
   @ApiModelProperty(value = "品名")
   private String proName;
+  @ApiModelProperty(value = "生产记录Id")
+  private Long proRecordID;
   @ApiModelProperty(value = "机台状态")
   private long status;
   @ApiModelProperty(value = "生产日期")

@@ -19,4 +19,6 @@ public interface ProductionRecordMapper  extends BaseMapper<ProductionRecord> {
   void updateProductionRecordIsError(@Param("isError") Boolean isError ,@Param("id")   long id);
 
   long   countProductionRecord(@Param("machineCode")  String machineCode );
+
+  long selectByMachineCode(@Param("machineCode")  String machineCode );
 }

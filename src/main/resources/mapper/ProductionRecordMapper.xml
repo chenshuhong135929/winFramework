@@ -4,7 +4,9 @@
 <mapper namespace="com.winframework.mapper.ProductionRecordMapper">
 
 
-    <insert id="addProductionRecord" parameterType="com.winframework.entity.ProductionRecord">
+    <insert id="addProductionRecord"   parameterType="com.winframework.entity.ProductionRecord">
+
+
           insert into TEXC_ProductionRecord (MachineCode,CollectMac,ProName,Material,MouldCode,StdCavityQty,UseCavityQty,CycleTime,UseCycleTime,FlowType,Qty,MQty,ProDate,Classes,DebugPerson,ProPerson,Operating,IsAuto,IsError,IsFinish)
          VALUES (#{machineCode},#{collectMac},#{proName},#{material},#{mouldCode},#{stdCavityQty},#{useCavityQty},#{cycleTime},#{useCycleTime},#{flowType},#{qty},#{mQty},#{proDate},#{classes},#{debugPerson},#{proPerson},#{operating},#{isAuto},#{isError},#{isFinish})
    </insert>
@@ -29,7 +31,13 @@
 
     <select id="countProductionRecord" resultType="java.lang.Long">
 
-      select id from   TEXC_ProductionRecord  where MachineCode=#{machineCode} and IsFinish=0
+      select count(*)  from   TEXC_ProductionRecord  where MachineCode=#{machineCode} and IsFinish=0
+
+    </select>
+
+    <select id="selectByMachineCode" resultType="java.lang.Long">
+
+      select  ID  from   TEXC_ProductionRecord  where MachineCode=#{machineCode} and IsFinish=0
 
     </select>
     <resultMap id="ProductionRecordResultMap" type="com.winframework.entity.ProductionRecord">

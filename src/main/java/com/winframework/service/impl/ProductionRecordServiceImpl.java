@@ -63,6 +63,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
         }
         productionRecord.setIsFinish(false);
         productionRecordMapper.addProductionRecord(productionRecord);
+        machineUseStatus.setProRecordID(productionRecordMapper.selectByMachineCode(productionRecord.getMachineCode()));
         machineUseStatusMapper.addMachineUseStatus(machineUseStatus);
         result.setCode(HttpStatus.HTTP_OK);
         result.setMessage("调机成功。");
@@ -123,7 +124,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
 
         machineUseStatus.setMachineCode(p.getMachineCode());
         machineUseStatus.setProName(p.getProName());
-
+        machineUseStatus.setProRecordID(p.getId());
         machineUseStatusMapper.addMachineUseStatus(machineUseStatus);
         productionRecordMapper.updateProductionRecord(p);
       }
