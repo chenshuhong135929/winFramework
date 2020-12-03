@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -104,10 +105,10 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
 
   @Override
   @Transactional
-  public CompletableFuture<CommonResult> updateProductionRecords(List<ProductionRecord> productionRecords) {
-    CommonResult result = new CommonResult();
-    CompletableFuture<CommonResult> future = CompletableFuture.supplyAsync(() -> {
-
+  public CompletableFuture<CommonResult< List<ProductionRecord>>> updateProductionRecords(List<ProductionRecord> productionRecords) {
+    CommonResult< List<ProductionRecord>> result = new CommonResult();
+    CompletableFuture<CommonResult< List<ProductionRecord>>> future = CompletableFuture.supplyAsync(() -> {
+      List<ProductionRecord> reProducionRecords=new ArrayList<>();
       for( ProductionRecord p : productionRecords){
         MachineUseStatus machineUseStatus = new MachineUseStatus();
         machineUseStatusMapper.updateEndTime(p.getMachineCode());
@@ -127,9 +128,11 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
         machineUseStatus.setProRecordID(p.getId());
         machineUseStatusMapper.addMachineUseStatus(machineUseStatus);
         productionRecordMapper.updateProductionRecord(p);
+        reProducionRecords.add(productionRecordMapper.selectByIdProductionRecord(p.getId()))  ;
       }
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("更新调机列表成功。");
+      result.setData(reProducionRecords);
       return result;
     });
     future.exceptionally((e) -> {

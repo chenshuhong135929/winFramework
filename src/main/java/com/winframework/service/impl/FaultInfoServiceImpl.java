@@ -14,8 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -39,13 +38,22 @@ public class FaultInfoServiceImpl extends ServiceImpl<FaultInfoMapper, FaultInfo
   MachineUseStatusMapper machineUseStatusMapper;
 
   @Override
-  public CompletableFuture<CommonResult<List<FaultInfo>>> selectFaultInfo() {
+  public CompletableFuture<CommonResult<List<Map<String,List<FaultInfo>>>>> selectFaultInfo() {
 
-    CommonResult result = new CommonResult();
-    CompletableFuture<CommonResult<List<FaultInfo>>> future = CompletableFuture.supplyAsync(() -> {
+    CommonResult<List<Map<String,List<FaultInfo>>>> result = new CommonResult();
+
+    List list = new ArrayList();
+    CompletableFuture<CommonResult<List<Map<String,List<FaultInfo>>>>>future = CompletableFuture.supplyAsync(() -> {
+      List<String> faulTypes = faultInfoMapper.selectByFaultTypeFaultInfo();
+      faulTypes.stream().forEach((x)->{
+        Map<String,List<FaultInfo>> map= new HashMap<>();
+        List<FaultInfo> faultInfos = faultInfoMapper.selectFaultInfo(x);
+        map.put(x,faultInfos);
+        list.add(map);
+      });
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("获取机台故障列表成功。");
-      result.setData( faultInfoMapper.selectFaultInfo());
+      result.setData(list );
       return result;
     });
     future.exceptionally((e) -> {

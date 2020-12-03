@@ -18,6 +18,10 @@
 
   </select>
 
+    <select id="selectByIdProductionRecord" resultMap="ProductionRecordResultMap">
+
+        select * from TEXC_ProductionRecord where where    ID=#{id}
+    </select>
     <update id="updateProductionRecord" parameterType="com.winframework.entity.ProductionRecord">
 
         update TEXC_ProductionRecord set Operating=#{operating} where    ID=#{id}

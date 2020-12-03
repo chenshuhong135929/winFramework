@@ -5,9 +5,12 @@
 
 
     <select id="selectFaultInfo" resultMap="FaultInfoResultMap">
-        select * from TEXC_FaultInfo
+        select * from TEXC_FaultInfo WHERE  FaultType=#{faultType}
     </select>
 
+    <select id="selectByFaultTypeFaultInfo" resultType="java.lang.String">
+          select DISTINCT(FaultType) from TEXC_FaultInfo
+    </select>
 
 
 
@@ -15,8 +18,8 @@
     <resultMap id="FaultInfoResultMap" type="com.winframework.entity.FaultInfo">
         <id column="ID" property="id" jdbcType="INTEGER"/>
         <id column="FaultCode" property="faultCode" jdbcType="VARCHAR"/>
-        <id column="FaultType" property="FaultType" jdbcType="VARCHAR"/>
-        <id column="FaultName" property="FaultName" jdbcType="VARCHAR"/>
+        <id column="FaultType" property="faultType" jdbcType="VARCHAR"/>
+        <id column="FaultName" property="faultName" jdbcType="VARCHAR"/>
     </resultMap>
 </mapper>
 

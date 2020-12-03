@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther ChenShuHong
@@ -29,7 +30,7 @@ public class FaultInfoController {
   FaultInfoService faultInfoService;
   @ApiOperation(value = "故障列表")
   @PostMapping("selectFaultInfo")
-  public CommonResult<List<FaultInfo>> selectFaultInfo() throws Exception {
+  public CommonResult<List<Map<String,List<FaultInfo>>>> selectFaultInfo() throws Exception {
 
     return faultInfoService.selectFaultInfo().get();
   }

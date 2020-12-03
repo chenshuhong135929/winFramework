@@ -14,6 +14,8 @@ public interface ProductionRecordMapper  extends BaseMapper<ProductionRecord> {
 
   List<ProductionRecord>selectProductionRecord();
 
+  ProductionRecord selectByIdProductionRecord(@Param("id")   long id);
+
   void updateProductionRecord(ProductionRecord productionRecord);
 
   void updateProductionRecordIsError(@Param("isError") Boolean isError ,@Param("id")   long id);

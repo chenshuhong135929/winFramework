@@ -23,7 +23,7 @@ public class FaultInfo {
   @ApiModelProperty(value = "故障编号")
   private String faultCode;
   @ApiModelProperty(value = "类型")
-  private String FaultType;
+  private String faultType;
   @ApiModelProperty(value = "名称")
-  private String FaultName;
+  private String faultName;
 }
