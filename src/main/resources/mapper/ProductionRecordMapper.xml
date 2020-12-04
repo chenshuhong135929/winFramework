@@ -8,7 +8,7 @@
 
 
           insert into TEXC_ProductionRecord (MachineCode,CollectMac,ProName,Material,MouldCode,StdCavityQty,UseCavityQty,CycleTime,UseCycleTime,FlowType,Qty,MQty,ProDate,Classes,DebugPerson,ProPerson,Operating,IsAuto,IsError,IsFinish)
-         VALUES (#{machineCode},#{collectMac},#{proName},#{material},#{mouldCode},#{stdCavityQty},#{useCavityQty},#{cycleTime},#{useCycleTime},#{flowType},#{qty},#{mQty},#{proDate},#{classes},#{debugPerson},#{proPerson},#{operating},#{isAuto},#{isError},#{isFinish})
+         VALUES (#{machineCode},#{collectMac},#{proName},#{material},#{mouldCode},#{stdCavityQty},#{useCavityQty},#{cycleTime},#{useCycleTime},#{flowType},#{qty},#{mQty},getdate(),#{classes},#{debugPerson},#{proPerson},#{operating},#{isAuto},#{isError},#{isFinish})
    </insert>
 
 
