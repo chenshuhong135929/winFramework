@@ -12,6 +12,7 @@ public interface MachineInfoMapper extends BaseMapper<MachineInfo> {
 
   List<MachineInfo> selectMachineInfo();
 
-  void updateStatus(@Param("machineCode") String machineCode, @Param("status") String status);
+  void updateStatus(@Param("machineCode") String machineCode,@Param("proName") String  proName,  @Param("status") String status);
+
 
 }

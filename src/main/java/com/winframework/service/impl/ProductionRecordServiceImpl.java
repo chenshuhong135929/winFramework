@@ -52,7 +52,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
       }else {
         productionRecord.setClasses(classesSet());
         productionRecord.setOperating(productionRecord.getIsAuto() == true ? 1l : 0l);
-        machineInfoMapper.updateStatus(productionRecord.getMachineCode(), productionRecord.getIsAuto() == true ? "1" : "4");
+        machineInfoMapper.updateStatus(productionRecord.getMachineCode(),productionRecord.getProName(), productionRecord.getIsAuto() == true ? "1" : "4");
         machineUseStatusMapper.updateEndTime(productionRecord.getMachineCode());
         MachineUseStatus machineUseStatus = new MachineUseStatus();
         machineUseStatus.setMachineCode(productionRecord.getMachineCode());
@@ -113,13 +113,16 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
         MachineUseStatus machineUseStatus = new MachineUseStatus();
         machineUseStatusMapper.updateEndTime(p.getMachineCode());
         if(p.getOperating()==1){
+          machineInfoMapper.updateStatus(p.getMachineCode(),p.getProName(),"1");
           machineUseStatus.setStatus(1);
         }
         if(p.getOperating()==2){
+          machineInfoMapper.updateStatus(p.getMachineCode(),null,"2");
           p.setIsFinish(true);
           machineUseStatus.setStatus(2);
         }
         if(!p.getIsError()){
+          machineInfoMapper.updateStatus(p.getMachineCode(),p.getProName(),"1");
           machineUseStatus.setStatus(1);
         }
 

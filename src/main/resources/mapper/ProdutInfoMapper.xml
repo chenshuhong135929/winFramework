@@ -18,6 +18,7 @@ FROM
 
 
 
+
     <resultMap id="ProductInfoResultMap" type="com.winframework.entity.ProductInfo">
         <id column="ID" property="id" jdbcType="INTEGER"/>
         <id column="ProName" property="proName" jdbcType="VARCHAR"/>

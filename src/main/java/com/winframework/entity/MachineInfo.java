@@ -21,5 +21,7 @@ public class MachineInfo {
   private String machineName;
   @ApiModelProperty(value = "设备状态")
   private String isAuto;
+  @ApiModelProperty(value = "品名")
+  private String  proName;
 
 }

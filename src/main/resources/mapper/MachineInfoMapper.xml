@@ -19,7 +19,7 @@ WHERE
 
     <update id="updateStatus" >
 
-       update  TEXC_MachineInfo  SET  Status=#{status}  WHERE   MachineCode=#{machineCode}
+       update  TEXC_MachineInfo  SET  Status=#{status} ,ProName=#{proName} WHERE   MachineCode=#{machineCode}
     </update>
 
 
@@ -28,6 +28,8 @@ WHERE
         <id column="MachineCode" property="machineCode" jdbcType="VARCHAR"/>
         <id column="MachineName" property="machineName" jdbcType="VARCHAR"/>
         <id column="IsAuto" property="isAuto" jdbcType="VARCHAR"/>
+        <id column="ProName" property="proName" jdbcType="VARCHAR"/>
+
     </resultMap>
 </mapper>
 

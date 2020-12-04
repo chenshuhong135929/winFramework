@@ -20,11 +20,11 @@
 
     <select id="selectByIdProductionRecord" resultMap="ProductionRecordResultMap">
 
-        select * from TEXC_ProductionRecord where where    ID=#{id}
+        select * from TEXC_ProductionRecord where     ID=#{id}
     </select>
     <update id="updateProductionRecord" parameterType="com.winframework.entity.ProductionRecord">
 
-        update TEXC_ProductionRecord set Operating=#{operating} where    ID=#{id}
+        update TEXC_ProductionRecord set Operating=#{operating} , IsError=#{isError} , IsFinish=#{isFinish}  where    ID=#{id}
 
     </update>
 
