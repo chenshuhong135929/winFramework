@@ -8,6 +8,7 @@ import com.winframework.common.CommonResult;
 import com.winframework.entity.MachineUseStatus;
 import com.winframework.entity.ProductInfo;
 import com.winframework.entity.ProductionRecord;
+import com.winframework.mapper.FaultRecordMapper;
 import com.winframework.mapper.MachineInfoMapper;
 import com.winframework.mapper.MachineUseStatusMapper;
 import com.winframework.mapper.ProductionRecordMapper;
@@ -40,6 +41,9 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
 
   @Autowired
   MachineUseStatusMapper machineUseStatusMapper;
+
+  @Autowired
+  FaultRecordMapper faultRecordMapper;
 
   @Override
   @Transactional
@@ -124,6 +128,8 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
         if(!p.getIsError()){
           machineInfoMapper.updateStatus(p.getMachineCode(),p.getProName(),"1");
           machineUseStatus.setStatus(1);
+        }else {
+          faultRecordMapper.updateFaultRecord(p.getId());
         }
 
         machineUseStatus.setMachineCode(p.getMachineCode());

@@ -8,6 +8,10 @@
         insert INTO   TEXC_FaultRecord  (ProReID,MachineCode,FaultCode,RecordTime ) values (#{proReID},#{machineCode},#{faultCode},#{recordTime})
     </insert>
 
+    <update id="updateFaultRecord"  >
+
+      UPDATE   TEXC_FaultRecord set FinishTime  =  getdate()  where ProReID=#{proReID} and FinishTime is null
+    </update>
 
     <resultMap id="FaultRecordResultMap" type="com.winframework.entity.FaultRecord">
         <id column="ID" property="id" jdbcType="INTEGER"/>
@@ -15,6 +19,7 @@
         <id column="MachineCode" property="machineCode" jdbcType="VARCHAR"/>
         <id column="FaultCode" property="faultCode" jdbcType="VARCHAR"/>
         <id column="RecordTime" property="recordTime"  javaType="java.sql.Timestamp" />
+        <id column="FinishTime" property="finishTime"  javaType="java.sql.Timestamp" />
     </resultMap>
 </mapper>
 

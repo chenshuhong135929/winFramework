@@ -31,4 +31,6 @@ public class FaultRecord {
   private String faultCode;
   @ApiModelProperty(value = "记录时间")
   private Timestamp recordTime;
+  @ApiModelProperty(value = "完成时间")
+  private Timestamp finishTime;
 }
