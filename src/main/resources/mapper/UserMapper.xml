@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.winframework.mapper.UserMapper">
+
+
+
+    <select id="selectByNameAndPassword"  resultMap="UserResultMap">
+       select * from  T_ACL_User where Name =#{name} and Password=#{password}
+    </select>
+
+
+    <resultMap id="UserResultMap" type="com.winframework.entity.User">
+        <id column="Name" property="name" jdbcType="VARCHAR"/>
+        <id column="Password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>
+
+
