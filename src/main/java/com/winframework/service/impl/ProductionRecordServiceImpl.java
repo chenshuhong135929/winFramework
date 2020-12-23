@@ -162,8 +162,8 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
   public String classesSet()  {
 
     DateTime  currentTime = DateUtil.date();
-    DateTime dayStartTime = DateUtil.parse("7:15");
-    DateTime dayEndTime = DateUtil.parse("19:15");
+    DateTime dayStartTime = DateUtil.parse("6:30");
+    DateTime dayEndTime = DateUtil.parse("18:30");
     if(currentTime.after(dayStartTime)||currentTime.before(dayEndTime) ){
       log.info("调机白班");
       return "白班" ;
