@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.winframework.mapper.MaterialMapper">
+
+
+    <select id="selectMaterial" resultMap="MaterialResultMap">
+       select * from  TECX_Material  where ProId=#{proId}
+    </select>
+
+
+    <resultMap id="MaterialResultMap" type="com.winframework.entity.Material">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <id column="ProId" property="proId" jdbcType="INTEGER"/>
+        <id column="MaterialName" property="materialName" jdbcType="VARCHAR"/>
+
+    </resultMap>
+</mapper>
+
+
