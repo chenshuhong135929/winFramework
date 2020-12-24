@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutionException;
  */
 @RestController
 @RequestMapping("machineInfo")
-@Api(value = "MachineContoller机台接口")
+@Api(value = "MachineController机台接口")
 public class MachineController {
 
   @Autowired

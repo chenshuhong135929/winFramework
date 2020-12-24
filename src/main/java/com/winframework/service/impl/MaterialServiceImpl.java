@@ -1,5 +1,6 @@
 package com.winframework.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpStatus;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.winframework.common.CommonResult;
@@ -28,6 +29,11 @@ public class MaterialServiceImpl extends ServiceImpl<MaterialMapper, Material> i
   public CompletableFuture<CommonResult<List<Material>>> selectMaterial(Long proId) {
     CommonResult result = new CommonResult();
     CompletableFuture<CommonResult<List<Material>>> future = CompletableFuture.supplyAsync(() -> {
+      if( proId==null){
+        result.setCode(HttpStatus.HTTP_INTERNAL_ERROR);
+        result.setMessage("用料不能为空");
+        return result;
+      }
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("获取用料成功。");
       result.setData( materialMapper.selectMaterial(proId));
