@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("user")
 @Api(value = "UserController用户接口")
-public class UserContoller {
+public class UserController {
 
   @Autowired
   UserService userService;
