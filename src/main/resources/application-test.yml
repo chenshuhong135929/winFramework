@@ -4,9 +4,9 @@ spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:sqlserver://192.168.1.116:1433;DatabaseName=WinFramework
-    username: sa
-    password: 123
+    url: jdbc:sqlserver://192.168.70.12:1433;DatabaseName=WinFramework
+    username: Tecx
+    password: 2020
 mybatis-plus:
   type-aliases-package: com.winframework.entity
   mapper-locations: classpath:mapper/*.xml
