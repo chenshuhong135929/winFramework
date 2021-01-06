@@ -28,7 +28,7 @@
         <!--database-->
         <!--sqlserver驱动 -->
         <dependency>
-            <groupId>sqlserver</groupId>
+            <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>sqljdbc4</artifactId>
             <version>4.0</version>
         </dependency>
@@ -68,4 +68,10 @@
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>clojars</id>
+            <url>http://clojars.org/repo/</url>
+        </repository>
+    </repositories>
 </project>
