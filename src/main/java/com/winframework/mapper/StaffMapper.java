@@ -3,6 +3,7 @@ package com.winframework.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.winframework.entity.Staff;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ import java.util.List;
 @Mapper
 public interface StaffMapper extends BaseMapper<Staff> {
 
-  List<Staff>  selectStaff();
+  List<Staff>  selectStaff( @Param("factory") String factory);
 }

@@ -27,12 +27,12 @@ public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements
 
 
   @Override
-  public CompletableFuture<CommonResult<List<Staff>>> selectStaff() {
+  public CompletableFuture<CommonResult<List<Staff>>> selectStaff(String factory) {
     CommonResult result = new CommonResult();
     CompletableFuture<CommonResult<List<Staff>>> future = CompletableFuture.supplyAsync(() -> {
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("获取员工成功。");
-      result.setData( staffMapper.selectStaff());
+      result.setData( staffMapper.selectStaff(factory));
       return result;
     });
     future.exceptionally((e) -> {

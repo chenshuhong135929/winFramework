@@ -6,11 +6,11 @@
 
 
 
-    <select id="selectStaff"  resultMap="StaffResultMap">
+    <select id="selectStaff"  resultMap="StaffResultMap"   parameterType="java.lang.String">
     SELECT
 	*
 FROM
-	TEXC_Staff
+	TEXC_Staff   where    Factory= #{factory}
     </select>
 
 

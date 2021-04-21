@@ -27,12 +27,12 @@ public class MachineInfoServiceImpl extends ServiceImpl<MachineInfoMapper, Machi
 
 
   @Override
-  public CompletableFuture<CommonResult<List<MachineInfo>>> selectMachineInfo() {
+  public CompletableFuture<CommonResult<List<MachineInfo>>> selectMachineInfo(String factory ) {
     CommonResult result = new CommonResult();
     CompletableFuture<CommonResult<List<MachineInfo>>> future = CompletableFuture.supplyAsync(() -> {
         result.setCode(HttpStatus.HTTP_OK);
         result.setMessage("获取设备成功。");
-        result.setData( machineInfoMapper.selectMachineInfo());
+        result.setData( machineInfoMapper.selectMachineInfo(factory));
       return result;
     });
     future.exceptionally((e) -> {

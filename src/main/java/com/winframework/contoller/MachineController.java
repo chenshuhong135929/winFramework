@@ -28,9 +28,9 @@ public class MachineController {
 
   @ApiOperation(value = "机台下拉列表")
   @PostMapping("selectMachineInfo")
-  public CommonResult<List<MachineInfo>> selectMachineInfo() throws Exception {
+  public CommonResult<List<MachineInfo>> selectMachineInfo(String factory ) throws Exception {
 
-    return machineInfoService.selectMachineInfo().get();
+    return machineInfoService.selectMachineInfo(factory).get();
   }
 
 

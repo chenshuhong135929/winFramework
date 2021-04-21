@@ -27,8 +27,8 @@ public class StaffController {
 
   @ApiOperation(value = "调机，生产  人员下拉列表")
   @PostMapping("selectStaff")
-  public CommonResult<List<Staff>> selectStaff() throws Exception {
+  public CommonResult<List<Staff>> selectStaff(String factory ) throws Exception {
 
-    return staffService.selectStaff().get();
+    return staffService.selectStaff(factory).get();
   }
 }

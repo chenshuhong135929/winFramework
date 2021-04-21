@@ -14,6 +14,6 @@ public interface StaffService  extends IService<Staff> {
    * 人员下啦
    * @return
    */
-  CompletableFuture<CommonResult<List<Staff>>> selectStaff();
+  CompletableFuture<CommonResult<List<Staff>>> selectStaff(String factory);
 
 }

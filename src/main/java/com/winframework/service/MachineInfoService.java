@@ -13,7 +13,7 @@ public interface MachineInfoService   extends IService<MachineInfo>  {
    * 获取设备下拉框数据
    * @return
    */
-  CompletableFuture<CommonResult<List<MachineInfo>>> selectMachineInfo();
+  CompletableFuture<CommonResult<List<MachineInfo>>> selectMachineInfo(String factory );
 
 
 

@@ -6,15 +6,15 @@
 
 
 
-    <select id="selectMachineInfo"  resultMap="MachineInfoResultMap">
+    <select id="selectMachineInfo"  resultMap="MachineInfoResultMap" parameterType="java.lang.String">
       SELECT
 	MachineCode,
 	MachineName,
 	IsAuto
 FROM
 	TEXC_MachineInfo
-WHERE
-	MachineCode NOT IN ( SELECT MachineCode FROM TEXC_ProductionRecord WHERE IsFinish = 0 )
+WHERE  Factory = #{factory} and
+	MachineCode NOT IN ( SELECT MachineCode FROM TEXC_ProductionRecord WHERE IsFinish = 0 )  ORDER BY    MachineCode ASC
     </select>
 
     <update id="updateStatus" >

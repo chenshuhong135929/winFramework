@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface MachineInfoMapper extends BaseMapper<MachineInfo> {
 
-  List<MachineInfo> selectMachineInfo();
+  List<MachineInfo> selectMachineInfo(@Param("factory") String factory );
 
   void updateStatus(@Param("machineCode") String machineCode,@Param("proName") String  proName,  @Param("status") String status);
 
