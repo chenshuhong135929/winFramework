@@ -154,6 +154,79 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
     return future;
   }
 
+  @Override
+  public CompletableFuture<CommonResult<List<ProductionRecord>>> selectWorkProductionRecord() {
+
+    CommonResult result = new CommonResult();
+    CompletableFuture<CommonResult<List<ProductionRecord>>> future = CompletableFuture.supplyAsync(() -> {
+
+
+      result.setCode(HttpStatus.HTTP_OK);
+      result.setMessage("显示生产中列表成功。");
+      result.setData(productionRecordMapper.selectWorkProductionRecord());
+      return result;
+    });
+    future.exceptionally((e) -> {
+      e.printStackTrace();
+      result.setCode(HttpStatus.HTTP_INTERNAL_ERROR);
+      log.error("显示生产中列表出错["+e.getMessage() +"]");
+      result.setMessage("系统出错误，请联系管理员。");
+      return result;
+    });
+    return future;
+  }
+
+  @Override
+  public CompletableFuture<CommonResult<List<ProductionRecord>>> selectStayProductionRecord() {
+
+    CommonResult result = new CommonResult();
+    CompletableFuture<CommonResult<List<ProductionRecord>>> future = CompletableFuture.supplyAsync(() -> {
+
+
+      result.setCode(HttpStatus.HTTP_OK);
+      result.setMessage("显示待生产列表成功。");
+      result.setData(productionRecordMapper.selectStayProductionRecord());
+      return result;
+    });
+    future.exceptionally((e) -> {
+      e.printStackTrace();
+      result.setCode(HttpStatus.HTTP_INTERNAL_ERROR);
+      log.error("显示待生产列表出错["+e.getMessage() +"]");
+      result.setMessage("系统出错误，请联系管理员。");
+      return result;
+    });
+    return future;
+  }
+
+  @Override
+  public CompletableFuture<CommonResult> startWorkProductionRecord(Long id,String machineCode) {
+
+
+    CommonResult result = new CommonResult();
+    CompletableFuture<CommonResult > future = CompletableFuture.supplyAsync(() -> {
+
+      if(productionRecordMapper.selectByIdWorkProductionRecordCount(machineCode)>0){
+        result.setCode(HttpStatus.HTTP_INTERNAL_ERROR);
+        result.setMessage("机台有计划正在生产中，请结束后再操作。");
+        return result;
+      }
+
+      productionRecordMapper.updateByIdWorkIsProing(id);
+      result.setCode(HttpStatus.HTTP_OK);
+      result.setMessage("机台计划生产中。");
+      return result;
+    });
+    future= future.exceptionally((e) -> {
+      e.printStackTrace();
+      result.setCode(HttpStatus.HTTP_INTERNAL_ERROR);
+      log.error("机台计划生产中出错["+e.getMessage() +"]");
+      result.setMessage("系统出错误，请联系管理员。");
+      return result;
+    });
+    return future;
+
+  }
+
 
   /**
    * 获取当前时间班别

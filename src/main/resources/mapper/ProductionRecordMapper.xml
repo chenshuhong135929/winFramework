@@ -14,7 +14,20 @@
 
     <select id="selectProductionRecord" resultMap="ProductionRecordResultMap">
 
-    select * from TEXC_ProductionRecord where IsFinish =0   ORDER BY   MachineCode
+    select * from TEXC_ProductionRecord where IsFinish =0  ORDER BY   MachineCode
+
+  </select>
+
+    <select id="selectWorkProductionRecord" resultMap="ProductionRecordResultMap">
+
+    select * from TEXC_ProductionRecord where IsFinish =0 and IsProing=1  ORDER BY   MachineCode
+
+  </select>
+
+
+    <select id="selectStayProductionRecord" resultMap="ProductionRecordResultMap">
+
+    select * from TEXC_ProductionRecord where IsFinish =0   and IsProing=0     ORDER BY   MachineCode
 
   </select>
 
@@ -44,6 +57,24 @@
       select  ID  from   TEXC_ProductionRecord  where MachineCode=#{machineCode} and IsFinish=0
 
     </select>
+
+
+    <select id="selectByIdWorkProductionRecordCount" resultType="java.lang.Long">
+
+    select count(*) from TEXC_ProductionRecord where IsFinish =0 and IsProing=1  and    MachineCode=#{machineCode}
+
+  </select>
+
+
+    <update id="updateByIdWorkIsProing">
+
+           update TEXC_ProductionRecord set IsProing=1  where    ID=#{id}
+    </update>
+
+
+
+
+
     <resultMap id="ProductionRecordResultMap" type="com.winframework.entity.ProductionRecord">
         <id column="ID" property="id" jdbcType="INTEGER"/>
         <id column="MachineCode" property="machineCode"/>
@@ -66,6 +97,7 @@
         <id column="IsAuto" property="isAuto"/>
         <id column="IsError" property="isError" />
         <id column="IsFinish" property="isFinish"/>
+        <id column="IsProing" property="isProing"/>
 
     </resultMap>
 </mapper>

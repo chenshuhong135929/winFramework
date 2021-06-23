@@ -62,4 +62,7 @@ public class ProductionRecord {
   private Boolean isError;
   @ApiModelProperty(value = "是否完成")
   private Boolean isFinish;
+
+  @ApiModelProperty(value = "是否生产中")
+  private Boolean isProing;
 }

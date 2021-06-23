@@ -48,5 +48,28 @@ public class ProductionRecordController  {
     return productionRecordService.updateProductionRecords(productionRecords).get();
   }
 
+  @ApiOperation(value = "显示生产中机台列表")
+  @PostMapping("selectWorkProductionRecord")
+  public CommonResult<List<ProductionRecord>> selectWorkProductionRecord() throws Exception {
+
+    return productionRecordService.selectWorkProductionRecord().get();
+  }
+
+
+  @ApiOperation(value = "显示待生产机台列表")
+  @PostMapping("selectStayProductionRecord")
+  public CommonResult<List<ProductionRecord>> selectStayProductionRecord() throws Exception {
+
+    return productionRecordService.selectStayProductionRecord().get();
+  }
+
+
+  @ApiOperation(value = "开始生产")
+  @PostMapping("startWorkProductionRecord")
+  public CommonResult startWorkProductionRecord(Long id,String machineCode) throws Exception {
+
+    return productionRecordService.startWorkProductionRecord(id,machineCode).get();
+  }
+
 
 }

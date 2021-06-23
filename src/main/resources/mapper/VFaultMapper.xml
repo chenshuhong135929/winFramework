@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.winframework.mapper.VFaultMapper">
+
+
+
+    <select id="selectByProRecordID"  resultMap="VFaultResultMap">
+SELECT
+DISTINCT
+	a.Id ,
+	a.ProRecordID ,
+	a.BeginTime ,
+	a.Mi,
+	  ( STUFF( ( SELECT  ','+ FaultName  FROM V_Fault WHERE ProRecordID=a.ProRecordID and Id=a.Id for xml path('') ),1,1, '' ) ) faultName
+FROM
+	V_Fault AS a
+WHERE
+	a.ProRecordID=#{proRecordID} ORDER BY  BeginTime
+    </select>
+
+
+    <resultMap id="VFaultResultMap" type="com.winframework.entity.VFault">
+        <id column="Id" property="id" jdbcType="VARCHAR"/>
+        <id column="ProRecordID" property="proRecordID" jdbcType="VARCHAR"/>
+		<id column="Mi" property="mi" jdbcType="VARCHAR"/>
+		<id column="BeginTime" property="beginTime"  javaType="java.sql.Timestamp" />
+		<id column="EndTime" property="endTime"   javaType="java.sql.Timestamp" />
+		<id column="faultName" property="faultName" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>
+
+

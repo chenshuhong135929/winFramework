@@ -16,4 +16,9 @@ public interface ProductionRecordService extends IService<ProductionRecord> {
 
   CompletableFuture<CommonResult< List<ProductionRecord>>> updateProductionRecords( List<ProductionRecord> productionRecords);
 
+  CompletableFuture<CommonResult<List<ProductionRecord>>> selectWorkProductionRecord( );
+
+  CompletableFuture<CommonResult<List<ProductionRecord>>> selectStayProductionRecord( );
+
+  CompletableFuture<CommonResult> startWorkProductionRecord(Long id ,String machineCode);
 }

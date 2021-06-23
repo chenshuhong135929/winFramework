@@ -23,4 +23,13 @@ public interface ProductionRecordMapper  extends BaseMapper<ProductionRecord> {
   long   countProductionRecord(@Param("machineCode")  String machineCode );
 
   long selectByMachineCode(@Param("machineCode")  String machineCode );
+
+  List<ProductionRecord>selectWorkProductionRecord();
+
+  List<ProductionRecord>selectStayProductionRecord();
+
+  long selectByIdWorkProductionRecordCount(@Param("machineCode")  String  machineCode);
+
+  void updateByIdWorkIsProing(@Param("id")   long id);
+
 }
