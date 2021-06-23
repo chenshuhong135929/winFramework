@@ -67,6 +67,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
           machineUseStatus.setStatus(4);
         }
         productionRecord.setIsFinish(false);
+        productionRecord.setIsProing(false);
         productionRecordMapper.addProductionRecord(productionRecord);
         machineUseStatus.setProRecordID(productionRecordMapper.selectByMachineCode(productionRecord.getMachineCode()));
         machineUseStatusMapper.addMachineUseStatus(machineUseStatus);
@@ -225,6 +226,27 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
     });
     return future;
 
+  }
+
+  @Override
+  public CompletableFuture<CommonResult> endWorkProductionRecord(Long id, String machineCode) {
+
+    CommonResult result = new CommonResult();
+    CompletableFuture<CommonResult > future = CompletableFuture.supplyAsync(() -> {
+
+      productionRecordMapper.endWorkProductionRecord(id);
+      result.setCode(HttpStatus.HTTP_OK);
+      result.setMessage("机台结束生产。");
+      return result;
+    });
+    future= future.exceptionally((e) -> {
+      e.printStackTrace();
+      result.setCode(HttpStatus.HTTP_INTERNAL_ERROR);
+      log.error("机台结束生产出错["+e.getMessage() +"]");
+      result.setMessage("系统出错误，请联系管理员。");
+      return result;
+    });
+    return future;
   }
 
 

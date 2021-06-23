@@ -7,8 +7,8 @@
     <insert id="addProductionRecord"   parameterType="com.winframework.entity.ProductionRecord">
 
 
-          insert into TEXC_ProductionRecord (MachineCode,CollectMac,ProName,Material,MouldCode,StdCavityQty,UseCavityQty,CycleTime,UseCycleTime,FlowType,Qty,MQty,ProDate,Classes,DebugPerson,ProPerson,Operating,IsAuto,IsError,IsFinish)
-         VALUES (#{machineCode},#{collectMac},#{proName},#{material},#{mouldCode},#{stdCavityQty},#{useCavityQty},#{cycleTime},#{useCycleTime},#{flowType},#{qty},#{mQty},getdate(),#{classes},#{debugPerson},#{proPerson},#{operating},#{isAuto},#{isError},#{isFinish})
+          insert into TEXC_ProductionRecord (MachineCode,CollectMac,ProName,Material,MouldCode,StdCavityQty,UseCavityQty,CycleTime,UseCycleTime,FlowType,Qty,MQty,ProDate,Classes,DebugPerson,ProPerson,Operating,IsAuto,IsError,IsFinish,IsProing)
+         VALUES (#{machineCode},#{collectMac},#{proName},#{material},#{mouldCode},#{stdCavityQty},#{useCavityQty},#{cycleTime},#{useCycleTime},#{flowType},#{qty},#{mQty},getdate(),#{classes},#{debugPerson},#{proPerson},#{operating},#{isAuto},#{isError},#{isFinish},#{isProing})
    </insert>
 
 
@@ -70,7 +70,10 @@
 
            update TEXC_ProductionRecord set IsProing=1  where    ID=#{id}
     </update>
+    <update id="endWorkProductionRecord">
 
+           update TEXC_ProductionRecord set IsProing=0  where    ID=#{id}
+    </update>
 
 
 

@@ -12,24 +12,25 @@ public interface ProductionRecordMapper  extends BaseMapper<ProductionRecord> {
 
   void addProductionRecord(ProductionRecord productionRecord);
 
-  List<ProductionRecord>selectProductionRecord();
+  List<ProductionRecord> selectProductionRecord();
 
-  ProductionRecord selectByIdProductionRecord(@Param("id")   long id);
+  ProductionRecord selectByIdProductionRecord(@Param("id") long id);
 
   void updateProductionRecord(ProductionRecord productionRecord);
 
-  void updateProductionRecordIsError(@Param("isError") Boolean isError ,@Param("id")   long id);
+  void updateProductionRecordIsError(@Param("isError") Boolean isError, @Param("id") long id);
 
-  long   countProductionRecord(@Param("machineCode")  String machineCode );
+  long countProductionRecord(@Param("machineCode") String machineCode);
 
-  long selectByMachineCode(@Param("machineCode")  String machineCode );
+  long selectByMachineCode(@Param("machineCode") String machineCode);
 
-  List<ProductionRecord>selectWorkProductionRecord();
+  List<ProductionRecord> selectWorkProductionRecord();
 
-  List<ProductionRecord>selectStayProductionRecord();
+  List<ProductionRecord> selectStayProductionRecord();
 
-  long selectByIdWorkProductionRecordCount(@Param("machineCode")  String  machineCode);
+  long selectByIdWorkProductionRecordCount(@Param("machineCode") String machineCode);
 
-  void updateByIdWorkIsProing(@Param("id")   long id);
+  void updateByIdWorkIsProing(@Param("id") long id);
 
+  void endWorkProductionRecord(@Param("id") long id);
 }

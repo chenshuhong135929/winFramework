@@ -70,6 +70,11 @@ public class ProductionRecordController  {
 
     return productionRecordService.startWorkProductionRecord(id,machineCode).get();
   }
+  @ApiOperation(value = "结束生产")
+  @PostMapping("endWorkProductionRecord")
+  public CommonResult endWorkProductionRecord(Long id,String machineCode) throws Exception {
 
+    return productionRecordService.endWorkProductionRecord(id,machineCode).get();
+  }
 
 }
