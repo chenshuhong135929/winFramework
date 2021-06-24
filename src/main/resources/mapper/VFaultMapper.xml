@@ -12,7 +12,8 @@ DISTINCT
 	a.ProRecordID ,
 	a.BeginTime ,
 	a.Mi,
-	  ( STUFF( ( SELECT  ','+ FaultName  FROM V_Fault WHERE ProRecordID=a.ProRecordID and Id=a.Id for xml path('') ),1,1, '' ) ) faultName
+	  ( STUFF( ( SELECT  ','+ FaultName  FROM V_Fault WHERE ProRecordID=a.ProRecordID and Id=a.Id for xml path('') ),1,1, '' ) ) faultName,
+	  (select IsError from TEXC_ProductionRecord where  ID=a.ProRecordID  ) IsError
 FROM
 	V_Fault AS a
 WHERE
@@ -27,6 +28,7 @@ WHERE
 		<id column="BeginTime" property="beginTime"  javaType="java.sql.Timestamp" />
 		<id column="EndTime" property="endTime"   javaType="java.sql.Timestamp" />
 		<id column="faultName" property="faultName" jdbcType="VARCHAR"/>
+		<id column="IsError" property="isError" />
     </resultMap>
 </mapper>
 

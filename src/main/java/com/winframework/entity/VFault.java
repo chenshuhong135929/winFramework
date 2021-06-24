@@ -29,4 +29,6 @@ public class VFault {
   private String mi;
   @ApiModelProperty(value = "故障")
   private String faultName;
+  @ApiModelProperty(value = "是否错误")
+  private Boolean isError;
 }
