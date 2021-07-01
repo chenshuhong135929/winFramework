@@ -5,7 +5,7 @@
 
 
     <insert id="addFaultRecord" parameterType="com.winframework.entity.FaultRecord">
-        insert INTO   TEXC_FaultRecord  (ProReID,MachineCode,FaultCode,RecordTime ) values (#{proReID},#{machineCode},#{faultCode},#{recordTime})
+        insert INTO   TEXC_FaultRecord  (ProReID,MachineCode,FaultCode,RecordTime,MusId ) values (#{proReID},#{machineCode},#{faultCode},#{recordTime},#{musId})
     </insert>
 
     <update id="updateFaultRecord"  >
@@ -20,6 +20,7 @@
         <id column="FaultCode" property="faultCode" jdbcType="VARCHAR"/>
         <id column="RecordTime" property="recordTime"  javaType="java.sql.Timestamp" />
         <id column="FinishTime" property="finishTime"  javaType="java.sql.Timestamp" />
+        <id column="MusId" property="musId" jdbcType="INTEGER"/>
     </resultMap>
 </mapper>
 

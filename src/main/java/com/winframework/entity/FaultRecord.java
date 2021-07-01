@@ -29,6 +29,8 @@ public class FaultRecord {
   private String machineCode;
   @ApiModelProperty(value = "故障编号")
   private String faultCode;
+  @ApiModelProperty(value = "MusId")
+  private long musId;
   @ApiModelProperty(value = "记录时间")
   private Timestamp recordTime;
   @ApiModelProperty(value = "完成时间")

@@ -25,6 +25,8 @@ public class FaultVo {
   private String machineCode;
   @ApiModelProperty(value = "品名")
   private String proName;
+  @ApiModelProperty(value = "MusId")
+  private Long musId;
   @ApiModelProperty(value = "故障编号")
   private List<String> faultCodes;
 }

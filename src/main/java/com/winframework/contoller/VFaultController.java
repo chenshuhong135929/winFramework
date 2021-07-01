@@ -26,8 +26,8 @@ public class VFaultController {
   VFaultService vFaultService;
 
   @ApiOperation(value = "故障列表")
-  @PostMapping("selectByNameAndPassword")
-  public CommonResult<List<VFault>> logon(String proRecordID) throws Exception {
+  @PostMapping("selectByProRecordID")
+  public CommonResult<List<VFault>> selectByProRecordID(String proRecordID) throws Exception {
 
     return vFaultService.selectByProRecordID(proRecordID).get();
   }

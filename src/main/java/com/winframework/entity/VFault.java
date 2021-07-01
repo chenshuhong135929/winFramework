@@ -23,7 +23,7 @@ public class VFault {
   private String proRecordID;
   @ApiModelProperty(value = "开始时间")
   private Date beginTime;
-  @ApiModelProperty(value = "开始时间")
+  @ApiModelProperty(value = "结束时间")
   private Date endTime;
   @ApiModelProperty(value = "停机时常")
   private String mi;

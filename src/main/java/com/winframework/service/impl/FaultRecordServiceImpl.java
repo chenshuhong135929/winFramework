@@ -3,7 +3,9 @@ package com.winframework.service.impl;
 import cn.hutool.http.HttpStatus;
 import com.winframework.common.CommonResult;
 import com.winframework.entity.FaultRecord;
+import com.winframework.entity.FaultVo;
 import com.winframework.mapper.FaultRecordMapper;
+import com.winframework.mapper.ProductionRecordMapper;
 import com.winframework.service.FaultRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +27,25 @@ public class FaultRecordServiceImpl implements FaultRecordService {
 
   @Autowired
   FaultRecordMapper faultRecordMapper;
-
+  @Autowired
+  ProductionRecordMapper productionRecordMapper;
   @Override
-  public CompletableFuture<CommonResult<List<FaultRecord>>> save(List<FaultRecord> faultRecords) {
+  public CompletableFuture<CommonResult<List<FaultRecord>>> save(FaultVo faultVo) {
     CommonResult result = new CommonResult();
     CompletableFuture<CommonResult<List<FaultRecord>>> future = CompletableFuture.supplyAsync(() -> {
-
-      faultRecords.stream().forEach(x->{
-        x.setRecordTime(new Timestamp( new Date().getTime()));
-        faultRecordMapper.addFaultRecord(x);
-      });
+      productionRecordMapper.updateProductionRecordIsError(true,faultVo.getProReID());
+      for(String faultCode :faultVo.getFaultCodes()){
+        FaultRecord faultRecord = new FaultRecord();
+        faultRecord.setFaultCode(faultCode);
+        faultRecord.setMusId(faultVo.getMusId());
+        faultRecord.setProReID(faultVo.getProReID());
+        faultRecord.setMachineCode(faultVo.getMachineCode());
+        faultRecord.setRecordTime(new Timestamp( new Date().getTime()));
+        faultRecordMapper.addFaultRecord(faultRecord);
+      }
 
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("添加故障记录成功。");
-      result.setData( faultRecords);
       return result;
     });
     future=future.exceptionally((e) -> {

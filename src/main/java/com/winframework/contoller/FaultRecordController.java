@@ -2,6 +2,7 @@ package com.winframework.contoller;
 
 import com.winframework.common.CommonResult;
 import com.winframework.entity.FaultRecord;
+import com.winframework.entity.FaultVo;
 import com.winframework.service.FaultRecordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,7 +28,7 @@ public class FaultRecordController {
 
   @ApiOperation(value = "机台故障记录提报")
   @PostMapping("save")
-  public CommonResult<List<FaultRecord>> save(@RequestBody List<FaultRecord> faultRecords) throws Exception {
+  public CommonResult<List<FaultRecord>> save(@RequestBody FaultVo faultRecords) throws Exception {
 
     return faultRecordService.save(faultRecords).get();
   }

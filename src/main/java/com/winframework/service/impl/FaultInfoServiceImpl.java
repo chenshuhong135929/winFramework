@@ -75,6 +75,7 @@ public class FaultInfoServiceImpl extends ServiceImpl<FaultInfoMapper, FaultInfo
       for(String faultCode :faultVo.getFaultCodes()){
         FaultRecord faultRecord = new FaultRecord();
         faultRecord.setFaultCode(faultCode);
+        faultRecord.setMusId(faultVo.getMusId());
         faultRecord.setProReID(faultVo.getProReID());
         faultRecord.setMachineCode(faultVo.getMachineCode());
         faultRecord.setRecordTime(new Timestamp( new Date().getTime()));
