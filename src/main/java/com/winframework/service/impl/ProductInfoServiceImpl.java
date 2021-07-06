@@ -26,12 +26,12 @@ public class ProductInfoServiceImpl extends ServiceImpl<ProductInfoMapper, Produ
 
 
   @Override
-  public CompletableFuture<CommonResult<List<ProductInfo>>> selectProductInfo(String proName) {
+  public CompletableFuture<CommonResult<List<ProductInfo>>> selectProductInfo(String proName,String factory ) {
     CommonResult result = new CommonResult();
     CompletableFuture<CommonResult<List<ProductInfo>>> future = CompletableFuture.supplyAsync(() -> {
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("获取品名成功。");
-      result.setData( productInfoMapper.selectProductInfo(proName));
+      result.setData( productInfoMapper.selectProductInfo(proName,factory));
       return result;
     });
     future.exceptionally((e) -> {

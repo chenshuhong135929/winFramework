@@ -36,9 +36,9 @@ public class ProductionRecordController  {
 
   @ApiOperation(value = "显示调机列表")
   @PostMapping("selectProductionRecord")
-  public CommonResult<List<ProductionRecord>> selectProductionRecord() throws Exception {
+  public CommonResult<List<ProductionRecord>> selectProductionRecord(String factory) throws Exception {
 
-    return productionRecordService.selectProductionRecord().get();
+    return productionRecordService.selectProductionRecord(factory).get();
   }
 
   @ApiOperation(value = "更新调机列表")
@@ -50,17 +50,17 @@ public class ProductionRecordController  {
 
   @ApiOperation(value = "显示生产中机台列表")
   @PostMapping("selectWorkProductionRecord")
-  public CommonResult<List<ProductionRecord>> selectWorkProductionRecord() throws Exception {
+  public CommonResult<List<ProductionRecord>> selectWorkProductionRecord(  String factory ) throws Exception {
 
-    return productionRecordService.selectWorkProductionRecord().get();
+    return productionRecordService.selectWorkProductionRecord(factory).get();
   }
 
 
   @ApiOperation(value = "显示待生产机台列表")
   @PostMapping("selectStayProductionRecord")
-  public CommonResult<List<ProductionRecord>> selectStayProductionRecord() throws Exception {
+  public CommonResult<List<ProductionRecord>> selectStayProductionRecord(String factory) throws Exception {
 
-    return productionRecordService.selectStayProductionRecord().get();
+    return productionRecordService.selectStayProductionRecord(factory).get();
   }
 
 

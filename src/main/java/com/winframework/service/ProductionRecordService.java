@@ -12,13 +12,13 @@ public interface ProductionRecordService extends IService<ProductionRecord> {
 
   CompletableFuture<CommonResult> startProductionRecord(ProductionRecord productionRecord);
 
-  CompletableFuture<CommonResult<List<ProductionRecord>>> selectProductionRecord( );
+  CompletableFuture<CommonResult<List<ProductionRecord>>> selectProductionRecord( String factory);
 
-  CompletableFuture<CommonResult< List<ProductionRecord>>> updateProductionRecords( List<ProductionRecord> productionRecords);
+  CompletableFuture<CommonResult< List<ProductionRecord>>> updateProductionRecords( List<ProductionRecord> productionRecords );
 
-  CompletableFuture<CommonResult<List<ProductionRecord>>> selectWorkProductionRecord( );
+  CompletableFuture<CommonResult<List<ProductionRecord>>> selectWorkProductionRecord(String factory );
 
-  CompletableFuture<CommonResult<List<ProductionRecord>>> selectStayProductionRecord( );
+  CompletableFuture<CommonResult<List<ProductionRecord>>> selectStayProductionRecord( String factory);
 
   CompletableFuture<CommonResult> startWorkProductionRecord(Long id ,String machineCode);
 

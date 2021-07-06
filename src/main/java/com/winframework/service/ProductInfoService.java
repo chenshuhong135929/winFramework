@@ -14,5 +14,5 @@ public interface ProductInfoService extends IService<ProductInfo> {
    * @param proName
    * @return
    */
-  CompletableFuture<CommonResult<List<ProductInfo>>> selectProductInfo(String  proName);
+  CompletableFuture<CommonResult<List<ProductInfo>>> selectProductInfo(String  proName,String factory );
 }

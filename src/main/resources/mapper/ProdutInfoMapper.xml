@@ -8,11 +8,14 @@ SELECT
 	*
 FROM
 	TEXC_ProductInfo
-
+        WHERE 1=1
+        <if test="factory != null and factory != ''">
+            and
+            Factory = #{factory}
+        </if>
         <if test="proName != null and proName != ''">
-  WHERE
-	  ProName LIKE '%${proName}%'
-
+            and
+	       ProName LIKE '%${proName}%'
         </if>
 
         ORDER BY    ProName ASC
@@ -29,6 +32,7 @@ FROM
         <id column="StdCavityQty" property="stdCavityQty" jdbcType="INTEGER"/>
         <id column="CycleTime" property="cycleTime" jdbcType="INTEGER"/>
         <id column="FlowType" property="flowType" jdbcType="VARCHAR"/>
+        <id column="Factory" property="factory" jdbcType="VARCHAR"/>
     </resultMap>
 </mapper>
 

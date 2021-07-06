@@ -65,4 +65,8 @@ public class ProductionRecord {
 
   @ApiModelProperty(value = "是否生产中")
   private Boolean isProing;
+
+  @ApiModelProperty(value = "工厂")
+  private String factory;
+
 }

@@ -14,26 +14,50 @@
 
     <select id="selectProductionRecord" resultMap="ProductionRecordResultMap">
 
-    select * from TEXC_ProductionRecord where IsFinish =0  ORDER BY   MachineCode
+SELECT
+	A.*,
+	B.Factory
+FROM
+	[dbo].[TEXC_ProductionRecord] A
+	INNER JOIN [dbo].[TEXC_MachineInfo] B ON A.MachineCode= B.MachineCode
+WHERE
+	B.Factory= #{factory}  and A.IsFinish =0  ORDER BY   MachineCode
 
   </select>
 
     <select id="selectWorkProductionRecord" resultMap="ProductionRecordResultMap">
 
-    select * from TEXC_ProductionRecord where IsFinish =0 and IsProing=1  ORDER BY   MachineCode
+ SELECT
+	A.*,
+	B.Factory
+FROM
+	[dbo].[TEXC_ProductionRecord] A
+	INNER JOIN [dbo].[TEXC_MachineInfo] B ON A.MachineCode= B.MachineCode
+WHERE IsFinish =0 and A.IsProing=1 AND B.Factory=#{factory}   ORDER BY   MachineCode
 
   </select>
 
 
     <select id="selectStayProductionRecord" resultMap="ProductionRecordResultMap">
 
-    select * from TEXC_ProductionRecord where IsFinish =0   and IsProing=0     ORDER BY   MachineCode
+   SELECT
+	A.*,
+	B.Factory
+FROM
+	[dbo].[TEXC_ProductionRecord] A
+	INNER JOIN [dbo].[TEXC_MachineInfo] B ON A.MachineCode= B.MachineCode
+WHERE A.IsFinish =0   and A.IsProing=0  AND  B.Factory= #{factory}  ORDER BY   MachineCode
 
   </select>
 
     <select id="selectByIdProductionRecord" resultMap="ProductionRecordResultMap">
 
-        select * from TEXC_ProductionRecord where     ID=#{id}
+       SELECT
+	A.*,
+	B.Factory
+FROM
+	[dbo].[TEXC_ProductionRecord] A
+	INNER JOIN [dbo].[TEXC_MachineInfo] B ON A.MachineCode= B.MachineCode where     A.ID=#{id} and  B.Factory= #{factory}
     </select>
     <update id="updateProductionRecord" parameterType="com.winframework.entity.ProductionRecord">
 
@@ -101,7 +125,7 @@
         <id column="IsError" property="isError" />
         <id column="IsFinish" property="isFinish"/>
         <id column="IsProing" property="isProing"/>
-
+        <id column="Factory" property="factory" jdbcType="VARCHAR"/>
     </resultMap>
 </mapper>
 

@@ -87,7 +87,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
   }
 
   @Override
-  public CompletableFuture<CommonResult<List<ProductionRecord>>> selectProductionRecord() {
+  public CompletableFuture<CommonResult<List<ProductionRecord>>> selectProductionRecord(String factory) {
 
     CommonResult result = new CommonResult();
     CompletableFuture<CommonResult<List<ProductionRecord>>> future = CompletableFuture.supplyAsync(() -> {
@@ -95,7 +95,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
 
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("显示调机列表成功。");
-      result.setData(productionRecordMapper.selectProductionRecord());
+      result.setData(productionRecordMapper.selectProductionRecord(factory));
       return result;
     });
     future.exceptionally((e) -> {
@@ -138,7 +138,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
         machineUseStatus.setProRecordID(p.getId());
         machineUseStatusMapper.addMachineUseStatus(machineUseStatus);
         productionRecordMapper.updateProductionRecord(p);
-        reProducionRecords.add(productionRecordMapper.selectByIdProductionRecord(p.getId()))  ;
+        reProducionRecords.add(productionRecordMapper.selectByIdProductionRecord(p.getId(),  p.getFactory()))  ;
       }
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("更新调机列表成功。");
@@ -156,7 +156,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
   }
 
   @Override
-  public CompletableFuture<CommonResult<List<ProductionRecord>>> selectWorkProductionRecord() {
+  public CompletableFuture<CommonResult<List<ProductionRecord>>> selectWorkProductionRecord(String factory) {
 
     CommonResult result = new CommonResult();
     CompletableFuture<CommonResult<List<ProductionRecord>>> future = CompletableFuture.supplyAsync(() -> {
@@ -164,7 +164,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
 
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("显示生产中列表成功。");
-      result.setData(productionRecordMapper.selectWorkProductionRecord());
+      result.setData(productionRecordMapper.selectWorkProductionRecord(factory));
       return result;
     });
     future.exceptionally((e) -> {
@@ -178,7 +178,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
   }
 
   @Override
-  public CompletableFuture<CommonResult<List<ProductionRecord>>> selectStayProductionRecord() {
+  public CompletableFuture<CommonResult<List<ProductionRecord>>> selectStayProductionRecord(String factory) {
 
     CommonResult result = new CommonResult();
     CompletableFuture<CommonResult<List<ProductionRecord>>> future = CompletableFuture.supplyAsync(() -> {
@@ -186,7 +186,7 @@ public class ProductionRecordServiceImpl extends ServiceImpl<ProductionRecordMap
 
       result.setCode(HttpStatus.HTTP_OK);
       result.setMessage("显示待生产列表成功。");
-      result.setData(productionRecordMapper.selectStayProductionRecord());
+      result.setData(productionRecordMapper.selectStayProductionRecord(factory));
       return result;
     });
     future.exceptionally((e) -> {

@@ -29,9 +29,9 @@ public class ProductInfoController {
 
   @ApiOperation(value = "品名下拉列表")
   @PostMapping("selectProductInfo")
-  public CommonResult<List<ProductInfo>> selectProductInfo(String  proName) throws Exception {
+  public CommonResult<List<ProductInfo>> selectProductInfo(String  proName,String factory ) throws Exception {
 
-    return productInfoService.selectProductInfo(proName).get();
+    return productInfoService.selectProductInfo(proName,factory).get();
   }
 
 }

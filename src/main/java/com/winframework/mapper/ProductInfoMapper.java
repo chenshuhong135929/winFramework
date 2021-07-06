@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper
 public interface ProductInfoMapper extends BaseMapper<ProductInfo> {
 
-  List<ProductInfo> selectProductInfo(@Param("proName")  String  proName);
+  List<ProductInfo> selectProductInfo(@Param("proName")  String  proName,@Param("factory")  String factory);
 
 }

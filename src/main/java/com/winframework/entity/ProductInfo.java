@@ -33,4 +33,7 @@ public class ProductInfo {
   private Long cycleTime;
   @ApiModelProperty(value = "流道类型")
   private String flowType;
+  @ApiModelProperty(value = "工厂")
+  private String factory;
+
 }

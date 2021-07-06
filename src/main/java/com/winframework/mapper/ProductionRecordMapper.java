@@ -12,9 +12,9 @@ public interface ProductionRecordMapper  extends BaseMapper<ProductionRecord> {
 
   void addProductionRecord(ProductionRecord productionRecord);
 
-  List<ProductionRecord> selectProductionRecord();
+  List<ProductionRecord> selectProductionRecord(@Param("factory") String  factory);
 
-  ProductionRecord selectByIdProductionRecord(@Param("id") long id);
+  ProductionRecord selectByIdProductionRecord(@Param("id") long id,@Param("factory") String  factory);
 
   void updateProductionRecord(ProductionRecord productionRecord);
 
@@ -24,9 +24,9 @@ public interface ProductionRecordMapper  extends BaseMapper<ProductionRecord> {
 
   long selectByMachineCode(@Param("machineCode") String machineCode);
 
-  List<ProductionRecord> selectWorkProductionRecord();
+  List<ProductionRecord> selectWorkProductionRecord(@Param("factory") String  factory);
 
-  List<ProductionRecord> selectStayProductionRecord();
+  List<ProductionRecord> selectStayProductionRecord(@Param("factory") String  factory);
 
   long selectByIdWorkProductionRecordCount(@Param("machineCode") String machineCode);
 
