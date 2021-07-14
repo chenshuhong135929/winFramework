@@ -13,6 +13,7 @@
     <resultMap id="UserResultMap" type="com.winframework.entity.User">
         <id column="Name" property="name" jdbcType="VARCHAR"/>
         <id column="Password" property="password" jdbcType="VARCHAR"/>
+        <id column="CompanyName" property="companyName" jdbcType="VARCHAR"/>
     </resultMap>
 </mapper>
 
