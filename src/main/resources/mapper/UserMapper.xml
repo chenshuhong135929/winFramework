@@ -6,7 +6,7 @@
 
 
     <select id="selectByNameAndPassword"  resultMap="UserResultMap">
-       select * from  T_ACL_User where Name =#{name} and Password=#{password}
+       select * from  T_ACL_User where Name =#{name}
     </select>
 
 
