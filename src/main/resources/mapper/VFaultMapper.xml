@@ -26,8 +26,8 @@ WHERE
         <id column="Id" property="id" jdbcType="VARCHAR"/>
         <id column="ProRecordID" property="proRecordID" jdbcType="VARCHAR"/>
 		<id column="Mi" property="mi" jdbcType="VARCHAR"/>
-		<id column="BeginTime" property="beginTime"  javaType="java.sql.Timestamp" />
-		<id column="EndTime" property="endTime"   javaType="java.sql.Timestamp" />
+		<id column="BeginTime" property="beginTime"   />
+		<id column="EndTime" property="endTime"    />
 		<id column="faultName" property="faultName" jdbcType="VARCHAR"/>
 		<id column="IsError" property="isError" />
     </resultMap>

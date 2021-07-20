@@ -30,7 +30,7 @@ public class ProductInfo {
   @ApiModelProperty(value = "穴数")
   private Long stdCavityQty;
   @ApiModelProperty(value = "周期")
-  private Long cycleTime;
+  private double cycleTime;
   @ApiModelProperty(value = "流道类型")
   private String flowType;
   @ApiModelProperty(value = "工厂")

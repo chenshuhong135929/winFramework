@@ -22,13 +22,21 @@ public class VFault {
   @ApiModelProperty(value = "生产记录Id")
   private String proRecordID;
   @ApiModelProperty(value = "开始时间")
-  private Date beginTime;
+  private String beginTime;
   @ApiModelProperty(value = "结束时间")
-  private Date endTime;
+  private String endTime;
   @ApiModelProperty(value = "停机时常")
   private String mi;
   @ApiModelProperty(value = "故障")
   private String faultName;
   @ApiModelProperty(value = "是否错误")
   private Boolean isError;
+
+  public String getBeginTime() {
+    return beginTime.substring(0,19);
+  }
+
+  public String getEndTime() {
+    return endTime.substring(0,19);
+  }
 }
