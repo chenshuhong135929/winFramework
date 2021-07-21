@@ -113,7 +113,7 @@ FROM
         <id column="UseCavityQty" property="useCavityQty" jdbcType="INTEGER"/>
         <id column="CycleTime" property="cycleTime"  />
         <id column="CycleTime" property="cycleTime"  />
-        <id column="UseCycleTime" property="useCycleTime" jdbcType="VARCHAR"/>
+        <id column="UseCycleTime" property="useCycleTime"  />
         <id column="Qty" property="qty"/>
         <id column="MQty" property="mQty"/>
         <id column="ProDate" property="proDate" />

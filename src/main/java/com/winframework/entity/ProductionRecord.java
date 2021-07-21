@@ -39,7 +39,7 @@ public class ProductionRecord {
   @ApiModelProperty(value = "周期")
   private double cycleTime;
   @ApiModelProperty(value = "生产周期")
-  private Long useCycleTime;
+  private Double useCycleTime;
   @ApiModelProperty(value = "流道类型")
   private String flowType;
   @ApiModelProperty(value = "生产数量")
